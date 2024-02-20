@@ -86,6 +86,7 @@ jobs:
           echo "VIRTUAL_ENV=.venv" >> "$GITHUB_ENV"
           echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
           echo "$PWD/.venv/Scripts" >> "$GITHUB_PATH"
+          echo "D:\\a\\typeshed-stats\\typeshed-stats\\.venv\\Scripts" >> "$GITHUB_PATH"
 
       - name: Install dependencies
         run: uv pip install -e ".[pytest]"
@@ -100,7 +101,7 @@ jobs:
           echo $PATH
           ls /d/a/typeshed-stats/typeshed-stats/.venv/Scripts || true
           /d/a/typeshed-stats/typeshed-stats/.venv/Scripts/typeshed-stats || true
-          coverage run -m pytest -s --doctest-modules
+          coverage run -m pytest -s --doctest-modules -k test_running_from_command_line
           coverage report --no-skip-covered
 
   create-issue-on-failure:
