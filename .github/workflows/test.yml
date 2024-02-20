@@ -91,12 +91,13 @@ jobs:
         run: uv pip install -e ".[pytest]"
       - run: uv pip freeze
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ runner.os == 'Windows' }}
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      #   if: ${{ runner.os == 'Windows' }}
 
       - name: Run tests under coverage
         run: |
+          echo $PATH
           coverage run -m pytest --doctest-modules
           coverage report --no-skip-covered
 
