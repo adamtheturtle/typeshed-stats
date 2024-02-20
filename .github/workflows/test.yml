@@ -61,13 +61,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           allow-prereleases: true
-      - name: Install uv (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: "irm https://astral.sh/uv/install.ps1 | iex"
+      # - name: Install uv (Windows)
+      #   if: ${{ runner.os == 'Windows' }}
+      #   run: "irm https://astral.sh/uv/install.ps1 | iex"
 
-      - name: Install uv (Unix)
-        if: ${{ runner.os != 'Windows' }}
-        run: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+      # - name: Install uv (Unix)
+      #   if: ${{ runner.os != 'Windows' }}
+      #   run: "curl -LsSf https://astral.sh/uv/install.sh | sh"
 
       # - name: Create and activate a virtual environment (Windows)
       #   if: ${{ runner.os == 'Windows' }}
@@ -81,6 +81,7 @@ jobs:
         # uv doesn't (yet) allow us to install packages globally;
         # we have to create and activate a virtual environment
         run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
           uv venv .venv
           echo "VIRTUAL_ENV=.venv" >> "$GITHUB_ENV"
           echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
