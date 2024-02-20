@@ -1,5 +1,4 @@
 import subprocess
-from pathlib import Path
 
 # Make sure not to import rich here, since it's an optional dependency
 # Some tests assert behaviour that's predicated on it not yet being imported
@@ -8,8 +7,8 @@ from pathlib import Path
 # @pytest.mark.parametrize(
 #     "args", [[sys.executable, "-m", "typeshed_stats"], ["typeshed-stats"]]
 # )
-def test_running_from_command_line(complete_typeshed: Path, args: list[str]) -> None:
-    subprocess.run(["echo", "$PATH"])
+def test_running_from_command_line() -> None:
+    subprocess.run(["python", "-c", "import os, pprint; pprint.pprint(dict(os.environ))"])
     subprocess.run(["typeshed-stats"])
     # result = subprocess.run([*args, "--typeshed-dir", str(complete_typeshed)])
     # code = result.returncode
