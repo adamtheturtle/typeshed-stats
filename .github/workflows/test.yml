@@ -98,6 +98,8 @@ jobs:
       - name: Run tests under coverage
         run: |
           echo $PATH
+          ls /d/a/typeshed-stats/typeshed-stats/.venv/Scripts
+          /d/a/typeshed-stats/typeshed-stats/.venv/Scripts/typeshed-stats
           coverage run -m pytest --doctest-modules
           coverage report --no-skip-covered
 
