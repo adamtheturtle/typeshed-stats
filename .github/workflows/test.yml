@@ -90,6 +90,11 @@ jobs:
       - name: Install dependencies
         run: uv pip install -e ".[pytest]"
       - run: uv pip freeze
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ runner.os == 'Windows' }}
+
       - name: Run tests under coverage
         run: |
           coverage run -m pytest --doctest-modules
